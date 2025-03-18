@@ -1,0 +1,3 @@
+"""
+Footy Analytics Dashboard package.
+""" 
