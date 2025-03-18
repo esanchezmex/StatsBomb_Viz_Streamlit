@@ -15,7 +15,7 @@ A Streamlit dashboard for football analytics using Statsbomb's open data.
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd footy_streamlit
+cd StatsBomb_Viz_Streamlit
 ```
 
 2. Create and activate a virtual environment:
@@ -59,15 +59,6 @@ pytest tests/
 ├── requirements.txt
 └── README.md
 ```
-
-### Deployment
-The app can be deployed using:
-1. Streamlit Cloud (recommended)
-2. Docker container
-3. Self-hosted server
-
-## Contributing
-Please read CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details. 
