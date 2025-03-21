@@ -2,6 +2,8 @@
 
 A Streamlit dashboard for football analytics using Statsbomb's open data.
 
+Users can select competition, match, team, player, and event to see detailed graphs. 
+
 ## Features
 - Interactive filters for competitions, seasons, teams, players, and match events
 - Dynamic visualizations based on filter selections
