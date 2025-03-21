@@ -22,7 +22,7 @@ logger.add("app.log", rotation="500 MB")
 
 # Set page config
 st.set_page_config(
-    page_title="Football Analytics Dashboard",
+    page_title="StatsBomb Free Data Visualizer",
     page_icon="⚽",
     layout="wide"
 )
@@ -40,10 +40,19 @@ if 'player_name' not in st.session_state:
     st.session_state.player_name = None
 
 # App title and description
-st.title("⚽ Football Analytics Dashboard")
+st.title("⚽ StatsBomb Free Data Visualizer")
 st.markdown("""
-This dashboard uses Statsbomb's open data to analyze football matches and events.
-Select a competition, season, and match to explore the data.
+This app will help you to visualize StatsBomb's free data, 
+but also understand the structure of the free data like what competitions, 
+seasons and matches are available, 
+as well as what type of event data like passes, shots, and more. 
+
+You can also visualize the data for a specific match. 
+
+Select a competition, season, and match to explore the data. 
+
+*NOTE*: More graph options will be added soon. 
+This app is still under development and some features might not work as expected.
 """)
 
 # Sidebar filters
