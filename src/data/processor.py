@@ -126,6 +126,9 @@ def process_events(events: List[Dict]) -> pd.DataFrame:
     # Calculate timestamp
     df['timestamp'] = df['minute'] * 60 + df['second']
     
+    # Extract shot data
+    df['shot'] = df.apply(lambda x: x.get('shot', {}) if x['event_type'] == 'Shot' else {}, axis=1)
+    
     return df
 
 def get_team_stats(events_df: pd.DataFrame) -> pd.DataFrame:

@@ -15,7 +15,7 @@ from data.processor import (get_player_stats, get_team_stats, process_competitio
 from utils.visualization import (create_event_timeline,
                                create_player_event_breakdown,
                                create_team_event_breakdown, create_heatmap,
-                               download_plot)
+                               create_player_performance_radar, download_plot)
 
 # Configure logger
 logger.add("app.log", rotation="500 MB")
@@ -38,7 +38,7 @@ if 'team_name' not in st.session_state:
     st.session_state.team_name = None
 if 'player_name' not in st.session_state:
     st.session_state.player_name = None
-
+    
 # App title and description
 st.title("⚽ StatsBomb Free Data Visualizer")
 st.markdown("""
@@ -131,14 +131,14 @@ if competition_season:
         )
         
         if st.session_state.team_name:
-            # Player selector
+            # Player selector - modified to allow multiple selections
             team_players = player_stats[
                 player_stats['team_name'] == st.session_state.team_name
             ]
-            st.session_state.player_name = st.sidebar.selectbox(
-                "Select Player",
+            selected_players = st.sidebar.multiselect(
+                "Select Players to Compare",
                 options=team_players['player_name'].unique(),
-                key="player"
+                key="players"
             )
         
         # Event type selector
@@ -184,4 +184,13 @@ if competition_season:
         st.plotly_chart(heatmap_fig, use_container_width=True)
         
         if st.button("Download Heatmap"):
-            download_plot(heatmap_fig, "heatmap.html") 
+            download_plot(heatmap_fig, "heatmap.html")
+            
+        # Add player performance radar chart when players are selected
+        if selected_players:
+            st.subheader("Player Performance Comparison")
+            radar_fig = create_player_performance_radar(events_df, selected_players)
+            st.plotly_chart(radar_fig, use_container_width=True)
+            
+            if st.button("Download Performance Profile"):
+                download_plot(radar_fig, "player_performance.html") 
